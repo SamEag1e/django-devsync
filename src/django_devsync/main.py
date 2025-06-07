@@ -1,8 +1,14 @@
 import os
 import sys
-import argparse
 
-from .core import setup_django, delete_migrations, reset_db, run_sync
+from .core import (
+    setup_django,
+    check_debug,
+    delete_migrations,
+    reset_db,
+    run_sync,
+)
+from .args import parse_arguments, describe_plan
 
 
 def main():
@@ -10,31 +16,17 @@ def main():
     if cwd not in sys.path:
         sys.path.insert(0, cwd)
 
-    print("🚧 django-devsync — For dev use only!\n")
-
-    parser = argparse.ArgumentParser(
-        description="Sync your dev DB schema like TypeORM synchronize."
-    )
-    parser.add_argument(
-        "--delete_migrations",
-        action="store_true",
-        help="Delete all migration files",
-    )
-    parser.add_argument(
-        "--reset_db", action="store_true", help="Drop all DB tables/schemas"
-    )
-    parser.add_argument(
-        "--run_sync",
-        action="store_true",
-        help="Run makemigrations and migrate",
+    print(
+        "🛑🛑🛑 DON'T USE THIS TOOL ON PRODUCTION 🛑🛑🛑\n"
+        "🚧 django-devsync is for development use only!\n"
     )
 
-    args = parser.parse_args()
-
-    # If no flags are passed, run all
+    args = parse_arguments()
     run_all = not any(vars(args).values())
 
+    describe_plan(args)
     setup_django()
+    check_debug()
 
     if run_all or args.delete_migrations:
         delete_migrations()

@@ -1,8 +1,10 @@
 from pathlib import Path
 
+from .utils import confirm
 
-def delete_migrations():
-    print("🔍 Scanning for migration files to delete...")
+
+def get_migration_files() -> list[Path]:
+    print("\n🔍 Scanning for migration files to delete...")
 
     root_path = input("Enter project root path [default='.']: ").strip() or "."
     base_path = Path(root_path)
@@ -21,6 +23,11 @@ def delete_migrations():
         for file in migrations_dir.glob("*.pyc"):
             migration_files.append(file)
 
+    return migration_files
+
+
+def delete_migrations() -> None:
+    migration_files = get_migration_files()
     if not migration_files:
         print("✅ No migration files found.")
         return
@@ -29,15 +36,10 @@ def delete_migrations():
     for file in migration_files:
         print(f"  - {file}")
 
-    confirm = (
-        input("Are you sure you want to delete all migrations? [y/n]: ")
-        .strip()
-        .lower()
-    )
-    if confirm == "y":
+    if confirm():
         for file in migration_files:
             file.unlink()
         print("✅ All migration files deleted.")
         return
 
-    print("❌ Operation cancelled.")
+    raise RuntimeError("❌ Operation cancelled.")
