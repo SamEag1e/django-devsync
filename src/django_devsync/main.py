@@ -1,14 +1,15 @@
+import os
+import sys
 import argparse
-from .core import (
-    get_settings,
-    setup_django,
-    delete_migrations,
-    reset_db,
-    run_sync,
-)
+
+from .core import setup_django, delete_migrations, reset_db, run_sync
 
 
 def main():
+    cwd = os.getcwd()
+    if cwd not in sys.path:
+        sys.path.insert(0, cwd)
+
     print("🚧 django-devsync — For dev use only!\n")
 
     parser = argparse.ArgumentParser(
@@ -33,12 +34,11 @@ def main():
     # If no flags are passed, run all
     run_all = not any(vars(args).values())
 
-    settings = get_settings()
     setup_django()
 
     if run_all or args.delete_migrations:
         delete_migrations()
     if run_all or args.reset_db:
-        reset_db(settings)
+        reset_db()
     if run_all or args.run_sync:
         run_sync()

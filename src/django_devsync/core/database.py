@@ -3,7 +3,9 @@ import os
 from django.db import connection
 
 
-def reset_db(settings):
+def reset_db():
+    from django.conf import settings
+
     engine = settings.DATABASES["default"]["ENGINE"]
 
     if "sqlite" in engine:
