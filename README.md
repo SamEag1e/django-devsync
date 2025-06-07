@@ -2,6 +2,8 @@
 
 A tiny command-line tool that mimics `synchronize: true` from TypeORM — but for Django.
 
+[![PyPI](https://img.shields.io/pypi/v/django-devsync)](https://pypi.org/project/django-devsync/)
+
 ⚠️ **Strictly for development use. Never use in production.**
 
 ---
