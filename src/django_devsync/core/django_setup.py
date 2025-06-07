@@ -5,6 +5,14 @@ import django
 
 
 def setup_django() -> None:
+    """
+    Set up the Django environment by ensuring the settings module is configured.
+
+    Checks for 'DJANGO_SETTINGS_MODULE' in environment variables.
+    If not found, interactively prompts the user until a valid module is provided.
+    Attempts to initialize Django using the resolved settings.
+    """
+
     settings_module = os.environ.get("DJANGO_SETTINGS_MODULE")
 
     if not settings_module:
@@ -32,6 +40,12 @@ def setup_django() -> None:
 
 
 def check_debug():
+    """
+    Ensure the Django settings are in development mode (DEBUG=True).
+
+    Raises a RuntimeError if DEBUG is False, to prevent accidental use in production.
+    """
+
     from django.conf import settings
 
     if not settings.DEBUG:

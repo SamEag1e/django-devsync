@@ -4,6 +4,14 @@ from .utils import confirm
 
 
 def get_migration_files() -> list[Path]:
+    """
+    Recursively find all Django migration files in the project directory.
+
+    Prompts the user for the project root path (defaults to '.').
+    Skips common excluded directories like 'venv' and 'site-packages'.
+    Returns a list of paths to migration `.py` and `.pyc` files (excluding __init__.py).
+    """
+
     print("\n🔍 Scanning for migration files to delete...")
 
     root_path = input("Enter project root path [default='.']: ").strip() or "."
@@ -27,6 +35,13 @@ def get_migration_files() -> list[Path]:
 
 
 def delete_migrations() -> None:
+    """
+    Delete all found Django migration files after user confirmation.
+
+    Prints a list of files to be deleted, asks the user to confirm,
+    and deletes them. If no files are found, exits early.
+    """
+
     migration_files = get_migration_files()
     if not migration_files:
         print("✅ No migration files found.")

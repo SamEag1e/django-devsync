@@ -1,7 +1,15 @@
 import argparse
 
 
-def parse_arguments():
+def parse_arguments() -> argparse.Namespace:
+    """
+    Parse command-line arguments for the devsync tool.
+
+    Returns:
+        argparse.Namespace: Parsed command-line arguments with flags for
+        deleting migrations, resetting the DB, and syncing schema.
+    """
+
     parser = argparse.ArgumentParser(
         description="⚙️ Sync your Django dev DB schema like TypeORM's synchronize=true"
     )
@@ -25,7 +33,14 @@ def parse_arguments():
     return args
 
 
-def describe_plan(args):
+def describe_plan(args: argparse.Namespace) -> None:
+    """
+    Print a summary of which operations will be performed based on CLI arguments.
+
+    Args:
+        args (argparse.Namespace): Parsed arguments from parse_arguments().
+    """
+
     if not any(vars(args).values()):
         print("🔧 No specific flags passed — running ALL steps:")
         print("  • Deleting all migrations")

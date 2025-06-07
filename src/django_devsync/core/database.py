@@ -6,6 +6,17 @@ from .utils import confirm
 
 
 def reset_db():
+    """
+    Resets the database schema depending on the engine.
+
+    - PostgreSQL: Drops and recreates the `public` schema.
+    - MySQL: Drops all tables.
+    - SQLite: Deletes the `.sqlite3` file.
+
+    Raises:
+        RuntimeError: If the database engine is unsupported or connection fails.
+    """
+
     from django.conf import settings
 
     engine = settings.DATABASES["default"]["ENGINE"]
