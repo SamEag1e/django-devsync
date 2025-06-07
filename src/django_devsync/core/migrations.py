@@ -51,10 +51,9 @@ def delete_migrations() -> None:
     for file in migration_files:
         print(f"  - {file}")
 
-    if confirm():
-        for file in migration_files:
-            file.unlink()
-        print("✅ All migration files deleted.")
+    if not confirm():
         return
 
-    raise RuntimeError("❌ Operation cancelled.")
+    for file in migration_files:
+        file.unlink()
+    print("✅ All migration files deleted.")
