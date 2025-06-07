@@ -1,0 +1,10 @@
+[project]
+name = "django-devsync"
+version = "0.1.0"
+description = "Wipe migrations, rebuild, and sync Django models in dev mode."
+dependencies = ["django >= 4.0"]
+readme = "README.md"
+requires-python = ">=3.8"
+
+[project.scripts]
+devsync = "django_devsync.main:main"
