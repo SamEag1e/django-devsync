@@ -1,9 +1,114 @@
-# django-devsync
+# 🛠️ django-devsync
 
-A tiny, dangerous Django utility for dev-mode schema syncing — wipe all migrations, rebuild from models, and auto-apply. Use only in development.
+A tiny command-line tool that mimics `synchronize: true` from TypeORM — but for Django.
 
-- Splitting stuff into other reusable modules, so that I'll be able to split cli commands
-- Adding some safety checks and warnings before doing dangerous things such as removing migrations or tables etc
-- Adding remove of tables for MySQL and PostgreSQL
-- Having soft_delete option( which will create a backup folder in the root of user's project and moves migration files there with a backup of db )
-- Will check DEBUG = TRUE and give warning that if your debug is false your're probably in production and IT's not SAFE to use this and so on.
+⚠️ **Strictly for development use. Never use in production.**
+
+---
+
+## 🚀 What It Does
+
+In early-stage development, database schemas change fast and migrations get messy. `django-devsync` helps you:
+
+- 🧹 **Delete all migration files**
+- 💥 **Reset your local DB schema**
+- 🔄 **Run `makemigrations` and `migrate` from scratch**
+
+All with a single command.
+
+---
+
+## 🛑 Don't Use In Production
+
+This tool **WILL destroy data** and has minimal safeguards.
+
+You’ve been warned 🧨
+
+---
+
+## 📦 Installation
+
+```bash
+pip install django-devsync
+```
+
+---
+
+## 💻 Usage
+
+```bash
+devsync --delete_migrations --reset_db --run_sync
+```
+
+or
+
+```bash
+python -m django_devsync --delete_migrations --reset_db --run_sync
+```
+
+If no flags are passed, it runs **all steps**.
+
+### Flags
+
+| Flag                  | Description                                                        |
+| --------------------- | ------------------------------------------------------------------ |
+| `--delete_migrations` | Delete all `.py` and `.pyc` files in `migrations/` directories     |
+| `--reset_db`          | Drop all tables/schemas in your local DB (SQLite/PostgreSQL/MySQL) |
+| `--run_sync`          | Run `makemigrations` and `migrate`                                 |
+
+---
+
+## 📂 Example
+
+```bash
+devsync
+```
+
+or
+
+```bash
+python -m django_devsync
+```
+
+Output:
+
+```
+🔧 No specific flags passed — running ALL steps:
+• Deleting all migrations
+• Resetting the database
+• Running makemigrations and migrate
+
+✅ All done!
+
+```
+
+---
+
+## ⚙️ Supported Databases
+
+- SQLite
+- MySQL
+- PostgreSQL
+
+> Uses Django's `DATABASES['default']['ENGINE']` to detect backend.
+
+---
+
+## 🧠 How It Works
+
+- Prompts for your `DJANGO_SETTINGS_MODULE` (unless set in env)
+- Verifies `DEBUG=True` before proceeding
+- Uses Django internals: `call_command("makemigrations")`, etc.
+- Drops and recreates schemas/tables directly with SQL
+
+---
+
+## 📬 Contributions
+
+Bug reports, feedback, and PRs are welcome. Stars are appreciated ⭐
+
+---
+
+## 📜 License
+
+MIT
