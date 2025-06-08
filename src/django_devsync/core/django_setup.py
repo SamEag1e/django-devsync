@@ -50,6 +50,6 @@ def check_debug():
 
     if not settings.DEBUG:
         raise RuntimeError(
-            "⚠️ django-devsync is **only** intended for development use.\n"
+            "django-devsync is **only** intended for development use.\n"
             "Refusing to run because DEBUG is False."
         )

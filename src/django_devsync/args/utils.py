@@ -11,7 +11,7 @@ def parse_arguments() -> argparse.Namespace:
     """
 
     parser = argparse.ArgumentParser(
-        description="⚙️ Sync your Django dev DB schema like TypeORM's synchronize=true"
+        description="Sync your Django dev DB schema like TypeORM's synchronize=true"
     )
     parser.add_argument(
         "--delete_migrations",
@@ -42,18 +42,18 @@ def describe_plan(args: argparse.Namespace) -> None:
     """
 
     if not any(vars(args).values()):
-        print("🔧 No specific flags passed — running ALL steps:")
-        print("  • Deleting all migrations")
-        print("  • Resetting the database")
-        print("  • Running makemigrations and migrate\n")
+        print("No specific flags passed — running ALL steps:")
+        print("  - Deleting all migrations")
+        print("  - Resetting the database")
+        print("  - Running makemigrations and migrate\n")
 
         return
 
-    print("🧾 Planned Operations:")
+    print("Planned Operations:")
     if args.delete_migrations:
-        print("  • Delete all migration files")
+        print("  - Delete all migration files")
     if args.reset_db:
-        print("  • Drop/reset the database")
+        print("  - Drop/reset the database")
     if args.run_sync:
-        print("  • Run makemigrations + migrate")
+        print("  - Run makemigrations + migrate")
     print()

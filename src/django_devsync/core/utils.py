@@ -10,7 +10,7 @@ def confirm():
 
     while True:
         check = (
-            input("⚠️ Are you sure you want to continue? [yes/no]: ")
+            input("Are you sure you want to continue? [yes/no]: ")
             .strip()
             .lower()
         )

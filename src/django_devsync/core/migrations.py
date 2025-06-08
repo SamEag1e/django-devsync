@@ -12,7 +12,7 @@ def get_migration_files() -> list[Path]:
     Returns a list of paths to migration `.py` and `.pyc` files (excluding __init__.py).
     """
 
-    print("\n🔍 Scanning for migration files to delete...")
+    print("\nScanning for migration files to delete...")
 
     root_path = input("Enter project root path [default='.']: ").strip() or "."
     base_path = Path(root_path)
@@ -44,10 +44,10 @@ def delete_migrations() -> None:
 
     migration_files = get_migration_files()
     if not migration_files:
-        print("✅ No migration files found.")
+        print("No migration files found.")
         return
 
-    print("\n🚨 The following migration files will be deleted:")
+    print("\nThe following migration files will be deleted:")
     for file in migration_files:
         print(f"  - {file}")
 
@@ -56,4 +56,4 @@ def delete_migrations() -> None:
 
     for file in migration_files:
         file.unlink()
-    print("✅ All migration files deleted.")
+    print("All migration files deleted.")

@@ -45,8 +45,8 @@ def main():
         sys.path.insert(0, cwd)
 
     print(
-        "🛑🛑🛑 DON'T USE THIS TOOL ON PRODUCTION 🛑🛑🛑\n"
-        "🚧 django-devsync is for development use only!\n"
+        "DON'T USE THIS TOOL ON PRODUCTION\n"
+        "django-devsync is for development use only!\n"
     )
 
     args = parse_arguments()

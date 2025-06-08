@@ -42,7 +42,7 @@ def _handle_sqlite(settings):
         print("No SQLite DB file found to delete.")
         return
 
-    print(f"\n🚨 The {db_path} will be deleted:")
+    print(f"\nThe {db_path} will be deleted:")
     if not confirm():
         return
 
@@ -74,7 +74,7 @@ def _handle_mysql():
         print("Re-enabling foreign key checks...")
         cursor.execute("SET FOREIGN_KEY_CHECKS=1;")
 
-    print("✅ Dropped all tables in MySQL")
+    print("Dropped all tables in MySQL")
 
 
 def _handle_postgresql():
