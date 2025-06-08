@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-devsync"
-version = "0.1.1"
+version = "0.1.2"
 description = "Wipe migrations, reset the dev database, and sync Django models — for dev mode only."
 readme = "README.md"
 requires-python = ">=3.8"
