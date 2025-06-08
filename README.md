@@ -1,34 +1,32 @@
-# 🛠️ django-devsync
+# django-devsync
 
 A tiny command-line tool that mimics `synchronize: true` from TypeORM — but for Django.
 
 [![PyPI](https://img.shields.io/pypi/v/django-devsync)](https://pypi.org/project/django-devsync/)
 
-⚠️ **Strictly for development use. Never use in production.**
+**Strictly for development use. Never use in production.**
 
 ---
 
-## 🚀 What It Does
+## What It Does
 
 In early-stage development, database schemas change fast and migrations get messy. `django-devsync` helps you:
 
-- 🧹 **Delete all migration files**
-- 💥 **Reset your local DB schema**
-- 🔄 **Run `makemigrations` and `migrate` from scratch**
+- **Delete all migration files**
+- **Reset your local DB schema**
+- **Run `makemigrations` and `migrate` from scratch**
 
 All with a single command.
 
 ---
 
-## 🛑 Don't Use In Production
+## Don't Use In Production 🛑
 
 This tool **WILL destroy data** and has minimal safeguards.
 
-You’ve been warned 🧨
-
 ---
 
-## 📦 Installation
+## Installation
 
 ```bash
 pip install django-devsync
@@ -36,7 +34,7 @@ pip install django-devsync
 
 ---
 
-## 💻 Usage
+## Usage
 
 ```bash
 devsync --delete_migrations --reset_db --run_sync
@@ -60,7 +58,7 @@ If no flags are passed, it runs **all steps**.
 
 ---
 
-## 📂 Example
+## Example
 
 ```bash
 devsync
@@ -75,18 +73,18 @@ python -m django_devsync
 Output:
 
 ```
-🔧 No specific flags passed — running ALL steps:
+No specific flags passed — running ALL steps:
 • Deleting all migrations
 • Resetting the database
 • Running makemigrations and migrate
 
-✅ All done!
+All done!
 
 ```
 
 ---
 
-## ⚙️ Supported Databases
+## Supported Databases
 
 - SQLite
 - MySQL
@@ -96,7 +94,7 @@ Output:
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
 - Prompts for your `DJANGO_SETTINGS_MODULE` (unless set in env)
 - Verifies `DEBUG=True` before proceeding
@@ -105,12 +103,12 @@ Output:
 
 ---
 
-## 📬 Contributions
+## Contributions
 
-Bug reports, feedback, and PRs are welcome. Stars are appreciated ⭐
+Bug reports, feedback, and PRs are welcome. Stars are appreciated.
 
 ---
 
-## 📜 License
+## License
 
 MIT
